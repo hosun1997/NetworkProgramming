@@ -1,7 +1,7 @@
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-public class filetest {
+// public class Filetest {
     public static void main(String[] args) {
         // pc의 파일 내용 읽어오기
         // 바이트 단위로 복사해서 붙여넣기
