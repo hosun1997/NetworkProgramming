@@ -1,7 +1,7 @@
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class iotest {
+public class Java_io {
 public static void main(String[] args) throws IOException {
     ByteArrayOutputStream out = new ByteArrayOutputStream();
     System.out.println("Before: "+out.size());
