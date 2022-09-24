@@ -2,7 +2,10 @@ package Java_IO;
 
 import java.io.*;
 
-public class InputStream {
+// InputStream : 파일 데이터를 Device로 read 한다.
+// OutputStream : Device에서 파일에 데이터를 write 한다.
+// InputStream의 read() 메소드는 입력 스트림에서 데이터 바이트를 읽습니다. 데이터의 다음 바이트를 반환하거나 파일 끝에 도달하면 -1을 반환하고 IOException I/O 오류가 발생한 경우
+public class S1_InputStream_01_method {
 
     public int read() throws IOException {
         return 0;
