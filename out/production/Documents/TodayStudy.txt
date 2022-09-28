@@ -1,0 +1,43 @@
+복습
+1. Stream = Network
+2. Big endian - 일반적인 네트워크 // Java는 빅엔디안을 기본적으로 사용한다.
+
+
+3. Filter Stream
+ - 실제로 데이터를 주고받는 스트림이 아니기 떄문에 데이터 입출력 기능이 없다.
+ - 자체적으로 I/O를 수행할 수 없기 때문에 Stream의 Read/Write method를 수행해야 한다.
+
+
+ Multiplex and Demultiplex -> 수신 측 Host의 전송계층은 실제로 Data를 직접 Process로 전달하지 않는다. -> 소켓이 담당.
+ Multiplex : 전송계층 세그먼트 데이터를 네트워크 계층으로 전달하는 작업 // Data Encapsulation을 수행한다.
+ Demultiplex : 전송계층의 세그먼트 데이터를 올바른 소켓으로 전달하는 작업 // 세그먼트 필드를 검사해 해당 소켓으로 전달한다.
+
+-----------------------------------------------------------------------------------------------------------------
+2022.09.28
+ <Internet Protocol>
+
+ 1. 한곳에서 데이터를 받아서 라우터를 거쳐 다른 host에게 전달.
+  - host와 host간의 데이터 전달을 담당한다. (단, 비신뢰적)
+
+ 2. TCP/IP 프로토콜에서 네트워크 계층의 패킷을 데이터그램이라고 한다.
+ <그림 - 데이타그램 Header>
+ * Version : Ipv4 or Ipv6
+ * Header Length : 값 * 4 = Header Length // Ipv4 헤더 길이 : 보통 20Byte
+ * Type of Service(TOS) : 서로 다른 유형의 IP Datagram을 구별한다.
+ * Datagram Length : 헤더를 포함한 Ip Datagram의 길이. / Payload = D.L - 20Byte(헤더의 길이)
+    - Router가 데이터를 약 1500byte로 쪼개서 데이터를 전달한다. (최대 길이 65,535byte임에도 불구하고 분할하는 이유)
+ * [Identification, Flags, Fragment offset] : Ip Datagram Fragment와 관련이 있는 3개의 Field
+    - Identification : 패킷 식별 번호 / 패킷 재조합 시 사용.
+    - Flags : [사용안함, 항상 0] / [D]- 0: 분할됨, 1: 분할 안됨 / [M] 1:분할패킷 o, 0:마지막 패킷
+    - Fragment offset : 정의된 값 * 8 = 패킷의 삽입 위치
+ * Time-To-Live(TTL) : 네트워크에서 Datagram이 무한히 순환하지 않도록하는 역할을 수행. Router 지날때 마다 감소
+ * Upper-layer Protocol : IP Datagram에서 Data가 전달될 목적지의 Transport Layer의 Protocol을 명시한다.
+ * Header-Checksum : 오류 검출
+ * Source & Destination IP address
+
+    - 데이타그램 단편화
+        - 포워딩 테이블
+        - 최대 MTU에 맞춰 단편화된 후 END SYSTEM(= DESTINATION)에서 재결합.
+
+
+ 3. Ip Address
