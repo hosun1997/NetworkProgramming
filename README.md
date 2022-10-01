@@ -1,28 +1,32 @@
 # NetworkProgramming
 
 참고자료
+
 1. UDP 통신 소켓프로그래밍
-https://coding-factory.tistory.com/271
+   https://coding-factory.tistory.com/271
 2. Java Stream
 3. TCP 통신 소켓프로그래밍
 
-
-
 # Folder
-1. [UDP](./1.%20UDP.md)
-2. [Java Stream](./2.%20Java%20Input,Output.md) 
-3. [TCP](./3.%20TCP.md)
+
+1. [UDP](mdfiles/1.%20UDP.md)
+2. [Java Stream](mdfiles/2.%20Java%20Input,Output.md)
+3. [TCP](mdfiles/3.%20TCP.md)
+4. [InternetProtocol](mdfiles/4.%20InternetProtocol.md)
 
 ※과제 : ByteArrayEx02 참고
 
 ## Principles of Reliable Data Transfer
+
     1. 전송된 Data가 손상되지 않는다.
     2. 모든 Data는 전송된 순서대로 전달된다.
 
 ### Finite - State Machine
+
 ![img_1.png](img/img_1.png)
 
 ### Reliable Data Transfer over a Perfectly Reliable Channel: rdt1.0
+
 ![img_2.png](img/img_2.png)
 ![img_3.png](img/img_3.png)
 
@@ -51,18 +55,22 @@ ARQ를 위한 3가지의 Additional protocol Capabilites
     1. Error Detection (From Receiver)
     2. Receiver Feedback (From Receiver)
     3. Re-transmission (From Sender)
+
 ![img_4.png](img/img_4.png)
 ![img_5.png](img/img_5.png)
 
 ### Reliable Data Transfer over a Channel with Bit Errors: rdt2.1
+
 Sequence Number를 도입하여 문제 해결
 
     - 동일 SeqN : 수신자는 송신자의 Packet 재전송을 인지할 수 있다.
     - 다른 SeqN : 수신자는 송신자로부터 새로운 Packet을 수신했다고 인지할 수 있다.
+
 ![img_6.png](img/img_6.png)
 ![img_7.png](img/img_7.png)
 
 ### Reliable Data Transfer over a Lossy Channel with Bit Errors: rdt3.0
+
 Sequence Number를 도입하여 문제 해결한 줄 알았으나, ACK, NACK 패킷의 손실은 어떻게 해결?
 
     → Timer 사용
