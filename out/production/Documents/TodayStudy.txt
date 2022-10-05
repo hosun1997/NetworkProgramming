@@ -1,3 +1,76 @@
+<2주차 교육> - UDP soket flow check.
+Goal : Application Layer to Transport Layer - Network flow check. // Process communication
+
+- OSI & TCP/IP Networking Model
+	1) OSI Model
+	 [Application - Presentation - Session - Transprot - Network - DataLink - Physical]
+
+	2) TCP/IP Networking Model
+	 [Application - Transport - Internet Protocol - Network Access Layer(Device Driver)]
+
+	 ① Application : HTTP, FTP, SMTP, DNS, RIP, SNMP
+	 ② Transport : TCP / UDP
+	 ③ Interner Protocol : IPv4(ARP, IGMP, ICMP), IPv6(ICMPv6)
+	 ④ Network Access Layer : Ethernet, 802.11 wireless LAN, Frame Relay, ATM
+
+- Transport Data unit
+	in OSI, called Packet
+	in RFC, called TCP segment // UDP datagram
+
+- UDP : Unreliable & Conectionless Service <-> TCP : Reliable & Connection-Oriented Service
+◆ UDP - No flow control / No Order / No Ack /
+◆ TCP - Flow control / Congestion control / Order / Check Ack /
+
+2. Multiplex and Demultiplex
+ Multiplex [Application -> Transport] : Transport Layer Segment Data를 Network Layer로 전달하는 작업
+ - 하나의 고속 통신 회선을 다수의 단말기가 공유할 수 있도록 하는 것
+ Demultiplex [Transport -> Application] : Transport Layer Segment Data를 올바른 Socket으로 전달하는 작업
+ -  다중화된 패킷의 흐름을 수신측 호스트에 전달하기 위해 원래 상태로 복구
+
+
+- 버클리 소켓 (찾아보기)
+
+- Source Address 같고, Port Number가 다르면 Destination Address가 같더라도 각자 경로를 만든다.
+
+------------------------------------------------------------------------------------------------------------------------
+<3주차 교육>
+
+신뢰성 있는 데이터 전송의 원리
+1. 전송된 Data가 손상되지 않는다. (실제로는 손상 발생 있음)
+2. 모든 data는 전송된 순서대로 전달된다.
+3. Finite-State Machine : 송신 - send를 상위 계층에서 대기
+4. Finite-State Machine : 수신 - receive를 하위 계층에서 대기
+5. 오류 발생 없음
+6. 송신자는 data를 송신하자마자 수신자가 수신할 수 있다고 가정.
+
+
+네트워크 프로그래밍 설계시 고려
+-> ARQ : 재전송을 기반으로 신뢰성 있는 Data 전송을 가능케하는 Protocol.
+Needs : 에러 탐지(수신자) / 수신자의 피드백(수신자) / 재전송(송신자)
+
+1) Error Detection
+	- 수신자가 에러 감지해야 함. (Checksum 필드 존재)
+2) Receiver Feedback
+	- 수신자는 송신자에게 수신했음을 알리는 Feedback을 제공해야 한다.
+3) Retransmission
+	- 오류가 있는 패킹은 송신자에 의해 재전송됨.
+
+
+rdt1.0 -> 사용 불가
+	- 단순 data 전송 및 수신
+rdt2.0 -> 사용 불가
+	- ACK, NACK의 손상시 확인 불가능
+	- Data 전송 순서의 변동시
+rdt2.1 -> Sequence Number를 추가 // 그래도 문제 발생
+	- 수신자가 송신자의 Packet 재전송을 인지.
+	- ACK의 Seqnum에 의한 혼돈 발생 가능성 있음. 0일때 nak 말고 1인 ack 보냈을 경우 확인 // 설계미스
+rdt3.0 ->
+	- 어떻게 Packet 손실 검출할 방법?
+		- Packet이 손실
+		- ACK가 손실
+	-> Timer 사용
+------------------------------------------------------------------------------------------------------------------------
+
 복습
 1. Stream = Network
 2. Big endian - 일반적인 네트워크 // Java는 빅엔디안을 기본적으로 사용한다.
@@ -13,7 +86,7 @@
  Demultiplex : 전송계층의 세그먼트 데이터를 올바른 소켓으로 전달하는 작업 // 세그먼트 필드를 검사해 해당 소켓으로 전달한다.
 
 -----------------------------------------------------------------------------------------------------------------
-2022.09.28
+2022.09.28 <5주차>
  <Internet Protocol>
 
  1. 한곳에서 데이터를 받아서 라우터를 거쳐 다른 host에게 전달.
@@ -44,9 +117,14 @@
 
 
 --------------------------------------------------------------------------------------------------------------------
-2022.10.05
+2022.10.05 <6주차>
 <Network Layer>
 1. Network Layer
 2. Router
     - Forwarding Table
     - Switching (Memory / Bus / Interconnection Network) : Memory와 Bus는 문제가 생김 -> Interconnection Network.
+3. Ipv4 addressing
+    - subnet
+    - class address
+    - DHCP
+    - NAT
