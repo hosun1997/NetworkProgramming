@@ -41,3 +41,12 @@
 
 
  3. Ip Address
+
+
+--------------------------------------------------------------------------------------------------------------------
+2022.10.05
+<Network Layer>
+1. Network Layer
+2. Router
+    - Forwarding Table
+    - Switching (Memory / Bus / Interconnection Network) : Memory와 Bus는 문제가 생김 -> Interconnection Network.

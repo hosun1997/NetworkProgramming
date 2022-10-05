@@ -15,7 +15,7 @@ public class Test_Client{
         try {
             // 서버로부터 이미지를 전송받은 후 파일로 저장합니다.
 
-            File file = new File("C:/Users/hwang/IdeaProjects/NetworkProgramming/img/copy_logo.png");
+            File file = new File("C:/Users/user/Downloads/copy_photo.jpg");
 
             client_socket = new Socket(Inet4Address.getByName("localhost"), 3000); // Server의 Server Socket에 요청
             result = new FileOutputStream(file);
@@ -27,7 +27,6 @@ public class Test_Client{
             while ((length=in.read(tmp))!=-1) {
                 result.write(tmp,0,length);
             }
-            result.close();
             System.out.println("Finish the Job!");
 
         } catch (IOException e) {
@@ -38,6 +37,16 @@ public class Test_Client{
     public static void main(String[] args) {
         Test_Client test_client= new Test_Client();
         test_client.clientStart();
+        try {
+            test_client.stopClient();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void stopClient() throws IOException {
+        in.close();
+        result.close();
+        client_socket.close();
+    }
 }

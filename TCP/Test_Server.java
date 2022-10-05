@@ -14,28 +14,28 @@ public class Test_Server {
     FileInputStream in;
 
     public void startServer() {
-        File file = new File("C:/Users/hwang/IdeaProjects/NetworkProgramming/img/logo.png");
+        File file = new File("C:/Users/user/Downloads/photo.jpg");
 
         try {
             serverSocket = new ServerSocket(); // 서버 소켓 생성
-            serverSocket.bind(new InetSocketAddress(Inet4Address.getByName("localhost"), 3000)); // 서버 소켓 IP주소 및 Port 지정
-            while(true) {
-                System.out.println("Listen......(Waiting Client Request)");
-                newsocket = serverSocket.accept(); // 연결 허용
-                System.out.println("Connection Accept, Start transferring file.");
+            serverSocket.bind(new InetSocketAddress(Inet4Address.getByName("localhost"), 3000)); // 서버 소켓 IP 주소 및 Port 지정
 
-                // Server에서 이미지 파일을 Client로 전송합니다.
-                in = new FileInputStream(file);
-                out = newsocket.getOutputStream();
+            System.out.println("Listen......(Waiting Client Request)");
+            newsocket = serverSocket.accept(); // 연결 허용
+            System.out.println("Connection Accept, Start transferring file.");
 
-                byte[] tmp = new byte[1024];	//버퍼기능
-                int c = 0;
-                while ((c=in.read(tmp))!=-1) {
-                    out.write(tmp,0,c);
-                }
-                out.close();
-                System.out.println("Finish the Job!");
+            // Server에서 이미지 파일을 Client로 전송합니다.
+            in = new FileInputStream(file);
+            out = newsocket.getOutputStream();
+
+            byte[] tmp = new byte[1024];    //버퍼기능
+            int c = 0;
+            while ((c = in.read(tmp)) != -1) {
+                out.write(tmp, 0, c);
             }
+            out.close();
+            System.out.println("Finish the Job!");
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -50,8 +50,12 @@ public class Test_Server {
     }
 
     public static void main(String[] args) {
-        Test_Server test_server= new Test_Server();
+        Test_Server test_server = new Test_Server();
         test_server.startServer();
-        test_server.startServer();
+        try {
+            test_server.stopServer();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
