@@ -1,20 +1,18 @@
 # NetworkProgramming
 
-참고자료
+---
 
-1. UDP 통신 소켓프로그래밍
-   https://coding-factory.tistory.com/271
-2. Java Stream
-3. TCP 통신 소켓프로그래밍
+1. NetworkProgramming
+    - [Socket Communication](mdfiles/0.%20NetworkProgramming.md)
+2. Java I/O
+    - [Java Stream](mdfiles/2.%20Java%20Input,Output.md)
+3. TCP
+    - [TCP](mdfiles/3.%20TCP.md)
+    - [InternetProtocol](mdfiles/4.%20InternetProtocol.md)
+4. UDP
+    - [UDP](mdfiles/1.%20UDP.md)
 
-# Folder
-
-1. [UDP](mdfiles/1.%20UDP.md)
-2. [Java Stream](mdfiles/2.%20Java%20Input,Output.md)
-3. [TCP](mdfiles/3.%20TCP.md)
-4. [InternetProtocol](mdfiles/4.%20InternetProtocol.md)
-
-※과제 : ByteArrayEx02 참고
+---
 
 ## Principles of Reliable Data Transfer
 

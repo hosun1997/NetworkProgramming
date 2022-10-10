@@ -128,3 +128,5 @@ rdt3.0 ->
     - class address
     - DHCP
     - NAT
+
+4. 코딩 : 자바 직렬화와 역직렬화
