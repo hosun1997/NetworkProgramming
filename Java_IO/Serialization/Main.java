@@ -2,14 +2,17 @@ package Java_IO.Serialization;
 
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 //        saveObject();
 //        loadObject();
-        serialization();
+//        serialization();
+//        deserialization();
+        serialization2();
     }
 
     public static void saveObject() {
@@ -93,6 +96,26 @@ public class Main {
         }
     }
 
+    public static void deserialization() throws IOException, ClassNotFoundException {
+        FileInputStream fileIn = new FileInputStream("./SerialObject.txt");
+        ObjectInputStream objIn = new ObjectInputStream(fileIn);
+        Member a = (Member) objIn.readObject();
+        System.out.println(a);
+        Member b = (Member) objIn.readObject();
+        System.out.println(b);
+    }
+
+    public static void serialization2() throws IOException {
+        Member steve = new Member("steve", 40);
+        Member james = new Member("james", 35);
+        ArrayList<Member> members = new ArrayList<>();
+        members.add(steve);
+        members.add(james);
+        FileOutputStream fileOut = new FileOutputStream("./SerialObject2.txt");
+        ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+        objOut.writeObject(members);
+
+    }
 
 }
 
