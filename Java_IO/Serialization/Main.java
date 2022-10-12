@@ -4,7 +4,6 @@ import java.io.*;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Base64;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -12,7 +11,8 @@ public class Main {
 //        loadObject();
 //        serialization();
 //        deserialization();
-        serialization2();
+//        serialization2();
+        deserializtion2();
     }
 
     public static void saveObject() {
@@ -115,6 +115,15 @@ public class Main {
         ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
         objOut.writeObject(members);
 
+    }
+
+    public static void deserializtion2() throws IOException, ClassNotFoundException {
+        FileInputStream fileIn = new FileInputStream("./SerialObject2.txt");
+        ObjectInputStream objIn = new ObjectInputStream(fileIn);
+        ArrayList<Member> savedList = (ArrayList<Member>) objIn.readObject();
+        for(int i = 0; i< savedList.size(); i++) {
+            System.out.println(savedList.get(i));
+        }
     }
 
 }
