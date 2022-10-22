@@ -8,7 +8,7 @@ public class Server {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket();
-        serverSocket.bind(new InetSocketAddress("192.168.56.1", 3000));
+        serverSocket.bind(new InetSocketAddress("localhost", 3000));
 
 
 

@@ -5,7 +5,7 @@ import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        Socket socket = new Socket("192.168.56.1", 3000);
+        Socket socket = new Socket("localhost", 3000);
 
         ObjectOutputStream objOut = new ObjectOutputStream(socket.getOutputStream());    // Client to Server
 
