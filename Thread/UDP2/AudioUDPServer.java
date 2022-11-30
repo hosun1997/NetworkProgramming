@@ -43,7 +43,7 @@ public class AudioUDPServer {
     private void broadcastAudio() {
         try {
             DatagramSocket socket = new DatagramSocket(8000);
-            InetAddress inetAddress = InetAddress.getByName("127.0.0.1");
+            InetAddress inetAddress = InetAddress.getByName("127.0.0.1"); // 상대 ip 주소를 입력해서 실행. 상대가 클라이언트를 켜면 audio 음성 전달됨.
             final byte audioBuffer[] = new byte[10000];
             while (true) {
                 int count = targetDataLine.read(
