@@ -1,4 +1,4 @@
-package UDP2;
+package Thread.UDP;
 
 import java.io.BufferedReader;
 import java.io.IOException;
